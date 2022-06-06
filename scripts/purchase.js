@@ -5,10 +5,10 @@ append(arr)
 function append(data){
     // console.log(data)
     data.forEach((elem) => {
-        let div=document.querySelector(".voucher")
+        let div=document.querySelector("#voucher_list")
         
         let voucher_list= document.createElement("div")
-        voucher_list.setAttribute("id","voucher_list")
+        voucher_list.setAttribute("class","voucher")
 
         let name= document.createElement("p")
         name.innerText=elem.name
