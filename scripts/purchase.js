@@ -1,3 +1,7 @@
+let addmoney= document.getElementById("wallet_balance") 
+    console.log(addmoney)
+    let udata= JSON.parse(localStorage.getItem("user"))
+    addmoney.innerText=udata.wallet
 var arr=JSON.parse(localStorage.getItem("purchase"))
 console.log(arr)
 append(arr)

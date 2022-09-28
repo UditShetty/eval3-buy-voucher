@@ -1,10 +1,13 @@
-function myfun(){
-    let addmoney= document.getElementById("wallet_balance").value 
-    let data= JSON.parse(localStorage.getItem("user"))
-    addmoney.innerText=data.wallet
+
+    let addmoney= document.getElementById("wallet_balance") 
     console.log(addmoney)
+    let udata= JSON.parse(localStorage.getItem("user"))
+    addmoney.innerText=udata.wallet
+
+    // console.log(data)
+    // console.log(addmoney)
     
-}
+
 
 
 const url=` https://masai-vouchers-api.herokuapp.com/api/vouchers`
@@ -41,11 +44,27 @@ function append(data){
         buy.innerText="Buy"
         buy.setAttribute("class","buy_voucher")
         buy.addEventListener("click",function(){
-            arr.push(elem)
+            // arr.push(elem)
+            if(addmoney.innerText<elem.price){
+                alert("Sorry! insufficient balance")
+            }
+            else{
+                addmoney.innerText=addmoney.innerText-elem.price
+                console.log(addmoney.innerText)
+                // let udata= JSON.parse(localStorage.getItem("user"))
+                udata.wallet=Number(addmoney.innerText)
+                console.log(udata.wallet)
+                localStorage.setItem("user",JSON.stringify(udata))
+                alert("payment Successfull")
+                arr.push(elem)
+                localStorage.setItem("purchase",JSON.stringify(arr))
+                
+
+                
+            }
             // console.log(elem)
             // voucherappend(elem)
-            let data=localStorage.setItem("purchase",JSON.stringify(arr))
-            window.location.href="purchase.html"
+            // window.location.href="purchase.html"
 
 
         })
@@ -57,6 +76,6 @@ function append(data){
     });
 }
 
-function voucherappend(data){
-console.log(data)
-}
+// function voucherappend(data){
+// console.log(data)
+// }
